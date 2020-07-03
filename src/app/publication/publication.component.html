@@ -1,0 +1,73 @@
+<div class="publication">
+  <div class="publication__header">
+    <span class="material-icons publication__header--icon"> forum </span>
+    <span class="material-icons publication__header--icon"> group </span>
+    <div class="publication__header__company">
+      <div class="publication__header__company--name">
+        {{ publication.company.name }}
+      </div>
+      <div class="publication__header__company--tagline">
+        {{ publication.company.tag_line }}
+      </div>
+    </div>
+  </div>
+  <div class="publication__tags">
+    <ul>
+      <li *ngFor="let tag of publication.tags">
+        {{ tag.name }}
+      </li>
+    </ul>
+  </div>
+  <div class="publication__content">{{ publication.content }}</div>
+  <div *ngIf="publication.shared_job" class="publication__content">
+    <span>{{ publication.shared_job.title }}</span>
+    <span>Mission :</span>
+    <div [innerHTML]="publication.shared_job.mission"></div>
+    <div *ngIf="showmore">
+      <span>Profil :</span>
+      <div [innerHTML]="publication.shared_job.profile"></div>
+    </div>
+    <div
+      *ngIf="publication.shared_job.degree && showmore"
+      [innerHTML]="publication.shared_job.degree.title"
+    ></div>
+    <div
+      *ngIf="!showmore"
+      class="publication__content--showmore"
+      (click)="showMore()"
+    >
+      <span>Afficher plus</span>
+      <span class="material-icons"> expand_more </span>
+    </div>
+    <div
+      *ngIf="showmore"
+      class="publication__content--showmore"
+      (click)="showMore()"
+    >
+      <span>Afficher moins</span>
+      <span class="material-icons"> expand_less </span>
+    </div>
+  </div>
+
+  <div class="publication__divider"></div>
+  <div class="publication__actions">
+    <div class="publication__actions--button">
+      <span class="material-icons"> add_circle_outline </span> envoyer un thanks
+    </div>
+    <div class="publication__actions--button">
+      <span class="material-icons"> share </span>partager
+    </div>
+  </div>
+  <div class="publication__divider"></div>
+  <div class="publication__comments">
+    <div class="publication__comments--stats">
+      {{ publication.comments.length }} Commentaire -
+      {{ publication.likes.length }} Thanks
+    </div>
+    <input
+      class="publication__comments--add"
+      type="text"
+      placeholder="ajouter un commentaire"
+    />
+  </div>
+</div>

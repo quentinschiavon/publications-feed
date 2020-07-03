@@ -1,0 +1,13 @@
+@import "./__colors.scss";
+
+html {
+  min-height: 100%;
+}
+
+body {
+  background: linear-gradient(
+    120deg,
+    var(--color_primary_dark),
+    var(--color_primary_light)
+  );
+}
